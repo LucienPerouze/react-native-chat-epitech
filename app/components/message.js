@@ -3,10 +3,6 @@ import {StyleSheet, Text, View} from 'react-native';
 
 import Avatar from "./avatar";
 
-// var DeviceInfo = require('react-native-device-info');
-//
-// console.log("Device Unique ID", DeviceInfo.getUniqueID());
-
 export default class Message extends Component {
 
 
@@ -41,7 +37,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 20,
+        marginBottom: 20,
         marginLeft: 20,
         marginRight: 20
     },
