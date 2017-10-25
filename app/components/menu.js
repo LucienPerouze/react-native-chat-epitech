@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, StatusBar, Image } from 'react-native';
+import {StyleSheet, View, StatusBar, Image, TouchableHighlight} from 'react-native';
 
 import ProfileIcon from "../assets/icons/profile";
 import ChatIcon from "../assets/icons/chat";
@@ -17,9 +17,15 @@ export default class Menu extends Component {
             chatLogoColor = "#d8d8d8";
         }
 
+        const { navigate } = this.props.navigation;
+
         return (
-            <View style={styles.container}>
-                <ProfileIcon color={profileLogoColor} width={25} height={25}/>
+        <View style={styles.container}>
+                <TouchableHighlight onPress={() => navigate("Profile")} underlayColor="white">
+                    <View>
+                        <ProfileIcon color={profileLogoColor} width={25} height={25}/>
+                    </View>
+                </TouchableHighlight>
                 <Image style={styles.logo} source={require('../assets/images/logo.png')} />
                 <ChatIcon color={chatLogoColor} width={25} height={25}/>
             </View>

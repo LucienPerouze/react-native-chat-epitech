@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     myContent: {
     },
     myText: {
-        backgroundColor: "#e4e4e4"
+        backgroundColor: "#b3e0ff"
     },
 
     // Other's Styles
@@ -74,6 +74,6 @@ const styles = StyleSheet.create({
         flex: 2
     },
     otherText: {
-        backgroundColor: "#b3e0ff",
+        backgroundColor: "#e4e4e4",
     }
 });

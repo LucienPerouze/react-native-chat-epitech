@@ -7,7 +7,9 @@ import messageStore from "../stores/messageStore";
 import Message from "../components/message";
 import EpitechChatAPI from "../stores/epitechChatAPI";
 
-export default class ChatView extends Component {
+export default class ChatScreen extends Component {
+
+    static navigationOptions = { title: 'Chat', header: null };
 
     constructor() {
         super();
@@ -40,7 +42,7 @@ export default class ChatView extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <MainMenu page={'chat'}/>
+                <MainMenu navigation={this.props.navigation} page={'chat'}/>
                 <KeyboardAvoidingView style={styles.stream} behavior={'padding'}>
                     <FlatList
                         ListHeaderComponent={() => <View style={{height:20}}/>}
