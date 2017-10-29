@@ -6,18 +6,17 @@ import MainMenu from "../components/menu";
 import messageStore from "../stores/messageStore";
 import Message from "../components/message";
 import EpitechChatAPI from "../stores/epitechChatAPI";
+import profileStore from "../stores/profileStore";
 
 export default class ChatScreen extends Component {
 
-    static navigationOptions = { title: 'Chat', header: null };
-
     constructor() {
         super();
-        this.messagesList = null;
         this.state = {
             messages: messageStore.getMessages(),
             input: ""
         };
+        this.messagesList = null;
         this.epitechChatAPI = new EpitechChatAPI();
         this.uid = Expo.Constants.deviceId;
     }
@@ -27,13 +26,17 @@ export default class ChatScreen extends Component {
             this.setState({
                 messages: messageStore.getMessages()
             });
-            setTimeout(() => {this.messagesList.scrollToEnd();}, 50)
+            setTimeout(() => {
+                if (this.messagesList) {
+                    this.messagesList.scrollToEnd();
+                }
+            }, 50)
         });
         this.epitechChatAPI.fetchNewMessages(this.uid);
     }
 
     sendMessage() {
-        this.epitechChatAPI.addMessage(this.uid, "jane", this.state.input);
+        this.epitechChatAPI.addMessage(this.uid, profileStore.getCurrentAvatar(), this.state.input);
         this.setState({
             input: ""
         });
@@ -42,7 +45,7 @@ export default class ChatScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <MainMenu navigation={this.props.navigation} page={'chat'}/>
+                <MainMenu />
                 <KeyboardAvoidingView style={styles.stream} behavior={'padding'}>
                     <FlatList
                         ListHeaderComponent={() => <View style={{height:20}}/>}

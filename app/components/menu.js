@@ -1,33 +1,37 @@
 import React, { Component } from 'react';
 import {StyleSheet, View, StatusBar, Image, TouchableHighlight} from 'react-native';
 
-import ProfileIcon from "../assets/icons/profile";
 import ChatIcon from "../assets/icons/chat";
+import Avatar from "./avatar";
+import profileStore from "../stores/profileStore";
 
 export default class Menu extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            avatar: "ben",
+        };
+    }
+
+    componentDidMount() {
+        profileStore.addListener("AVATAR_CHANGED", () => {
+            this.setState({
+                avatar: profileStore.getCurrentAvatar()
+            });
+        });
+    }
+
     render() {
-
-        let profileLogoColor = "#000";
-        let chatLogoColor = "#000";
-
-        if (this.props.page === "profile") {
-            profileLogoColor = "#d8d8d8";
-        }
-        else if (this.props.page === "chat") {
-            chatLogoColor = "#d8d8d8";
-        }
-
-        const { navigate } = this.props.navigation;
-
         return (
-        <View style={styles.container}>
-                <TouchableHighlight onPress={() => navigate("Profile")} underlayColor="white">
+            <View style={styles.container}>
+                <ChatIcon color={"#000"} width={25} height={25}/>
+                <Image style={styles.logo} source={require('../assets/images/logo.png')} />
+                <TouchableHighlight onPress={() => profileStore.toggleAvatar()} underlayColor="white">
                     <View>
-                        <ProfileIcon color={profileLogoColor} width={25} height={25}/>
+                        <Avatar width={25} height={25} name={this.state.avatar}/>
                     </View>
                 </TouchableHighlight>
-                <Image style={styles.logo} source={require('../assets/images/logo.png')} />
-                <ChatIcon color={chatLogoColor} width={25} height={25}/>
             </View>
         );
     }
