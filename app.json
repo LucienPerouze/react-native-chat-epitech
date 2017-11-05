@@ -1,5 +1,15 @@
 {
   "expo": {
-    "sdkVersion": "21.0.0"
+    "name": "Epitech Chat",
+    "icon": "./app/assets/icons/app-logo.png",
+    "version": "1.0.0",
+    "slug": "epitech-coding-club-chat",
+    "sdkVersion": "21.0.0",
+    "ios": {
+      "bundleIdentifier": "eu.epitech.epitech-chat"
+    },
+    "android": {
+      "package": "u.epitech.epitech-chat"
+    }
   }
 }
